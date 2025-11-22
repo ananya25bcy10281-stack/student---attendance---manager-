@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Class Report</h3>
+
+<canvas id="attendanceChart" height="100"></canvas>
+
+<table class="table mt-4">
+  <thead><tr><th>Name</th><th>Roll</th><th>Attendance %</th><th>Marks</th></tr></thead>
+  <tbody>
+    {% for r in report %}
+    <tr>
+      <td>{{ r.name }}</td>
+      <td>{{ r.roll }}</td>
+      <td>{{ r.attendance }}%</td>
+      <td>
+        {% if r.marks %}
+          {% for m in r.marks %}
+            <b>{{ m.subject }}:</b> {{ m.marks }}<br>
+          {% endfor %}
+        {% else %}
+          No marks
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<script>
+fetch("{{ url_for('attendance_chart_api') }}")
+  .then(res => res.json())
+  .then(data => {
+    const ctx = document.getElementById('attendanceChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: data.labels,
+        datasets: [{
+          label: 'Attendance %',
+          data: data.percents,
+          borderWidth: 1,
+          backgroundColor: 'rgba(13,110,253,0.6)'
+        }]
+      },
+      options: {
+        scales: {
+          y: { beginAtZero: true, max: 100 }
+        }
+      }
+    });
+  });
+</script>
+
+{% endblock %}

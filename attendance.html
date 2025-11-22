@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Mark Attendance</h3>
+<form method="post">
+  <label>Date</label>
+  <input type="date" name="date" class="form-control mb-3" value="{{ ""|default }}" required>
+  <table class="table">
+    <thead><tr><th>Name</th><th>Present</th><th>Absent</th></tr></thead>
+    <tbody>
+      {% for s in students %}
+      <tr>
+        <td>{{ s.name }}</td>
+        <td><input type="radio" name="status_{{ s.id }}" value="present" checked></td>
+        <td><input type="radio" name="status_{{ s.id }}" value="absent"></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <button class="btn btn-success">Save Attendance</button>
+</form>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Add Marks</h3>
+<form method="post">
+  <label>Subject</label>
+  <input type="text" name="subject" class="form-control mb-3" required>
+  <table class="table">
+    <thead><tr><th>Name</th><th>Marks</th></tr></thead>
+    <tbody>
+      {% for s in students %}
+      <tr>
+        <td>{{ s.name }}</td>
+        <td><input type="number" name="marks_{{ s.id }}" class="form-control" min="0" max="100" placeholder="Enter marks or leave blank"></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <button class="btn btn-warning">Save Marks</button>
+</form>
+{% endblock %}

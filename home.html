@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="text-center py-5">
+  <h2>Welcome to Student Attendance & Performance Manager</h2>
+  <p class="lead">Teacher and Student logins available. Teacher can manage students, mark attendance, add marks and generate reports (with graphs).</p>
+
+  <div class="d-flex justify-content-center gap-2">
+    <a class="btn btn-primary" href="{{ url_for('teacher_login') }}">Teacher Login</a>
+    <a class="btn btn-outline-primary" href="{{ url_for('student_login') }}">Student Login</a>
+  </div>
+
+  <hr class="my-4">
+  <div>
+    <p><b>Tip:</b> Teacher default credentials (for initial use): <code>username: teacher1</code>, <code>password: teacher123</code></p>
+    <p>Use <code>/teacher/create_sample</code> after teacher login to create sample data for testing.</p>
+  </div>
+</div>
+{% endblock %}

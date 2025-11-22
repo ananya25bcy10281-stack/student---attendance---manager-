@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Edit Student</h3>
+<form method="post" class="col-md-6">
+  <label>Name</label>
+  <input type="text" name="name" class="form-control mb-2" value="{{ student.name }}" required>
+  <label>Roll Number</label>
+  <input type="text" name="roll" class="form-control mb-2" value="{{ student.roll }}" required>
+  <button class="btn btn-success">Save</button>
+</form>
+{% endblock %}

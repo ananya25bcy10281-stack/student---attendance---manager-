@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Student Dashboard</h3>
+<div class="card p-3">
+  <h5>{{ student.name }} ({{ student.roll }})</h5>
+  <p><b>Attendance:</b> {{ attendance_percent }}%</p>
+  <p><b>Marks:</b></p>
+  {% if marks %}
+    <ul>
+      {% for m in marks %}
+        <li>{{ m.subject }} : {{ m.marks }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No marks available yet.</p>
+  {% endif %}
+  <a class="btn btn-info" href="{{ url_for('student_report') }}">View Report</a>
+</div>
+{% endblock %}
